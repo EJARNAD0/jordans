@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jordan Shoes Advertisement</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <img src="images/logo.png" alt="Jordan Logo" class="loading-logo">
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" style="display: none;">
+        <!-- Logo and Introduction Section -->
+        <header class="header">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="Jordan Logo" class="logo">
+            </div>
+            <div class="intro">
+                <h1>Exclusive Jordan Shoe Collection</h1>
+                <p>Discover the latest and most iconic Jordan sneakers that blend heritage and innovation. Explore our featured collection and find your perfect pair.</p>
+            </div>
+        </header>
+
+        <div class="shoe-section" id="chicago">
+            <h1>Jordan 1 Chicago</h1>
+            <p class="description">
+                The Jordan 1 Chicago is an iconic sneaker that blends the perfect mix of style and history. With its classic red, white, and black colorway, this shoe is a must-have for any sneaker enthusiast.
+            </p>
+            <!-- Swiper Slider for Chicago -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="images/j1chicago.jpg" alt="Jordan 1 Chicago Angle 1">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/chicago1.jpg" alt="Jordan 1 Chicago Angle 2">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/chicago2.jpg" alt="Jordan 1 Chicago Angle 3">
+                    </div>
+                    <!-- Add more slides as needed -->
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+
+        <div class="shoe-section" id="manila">
+            <h1>Jordan 4 Manila</h1>
+            <p class="description">
+                The Jordan 4 Manila celebrates the rich culture and vibrant spirit of Manila with its unique green and yellow color scheme. This limited edition sneaker is a standout piece in any collection.
+            </p>
+            <!-- Swiper Slider for Manila -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="images/j4manila.avif" alt="Jordan 4 Manila Angle 1">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/manila1.jpg" alt="Jordan 4 Manila Angle 2">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/manila2.jpg" alt="Jordan 4 Manila Angle 3">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/manila3.jpg" alt="Jordan 4 Manila Angle 4">
+                    </div>
+                    <!-- Add more slides as needed -->
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+
+        <div class="shoe-section" id="travis">
+            <h1>Jordan 1 Travis Scott</h1>
+            <p class="description">
+                The Jordan 1 Travis Scott, released in 2019, features a brown and beige color scheme with a reversed Swoosh logo and "Cactus Jack" branding. This collaboration with Travis Scott blends retro style with modern streetwear, making it a highly coveted sneaker.
+            </p>
+            <!-- Swiper Slider for Travis Scott -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="images/travis1.jpeg" alt="Jordan 1 Travis Scott Angle 1">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/travis2.jpg" alt="Jordan 1 Travis Scott Angle 2">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/travis3.jpg" alt="Jordan 1 Travis Scott Angle 3">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/travis4.jpg" alt="Jordan 1 Travis Scott Angle 4">
+                    </div>
+                    <!-- Add more slides as needed -->
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Jordan Brand. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        var chicagoSwiper = new Swiper('#chicago .swiper-container', {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            navigation: {
+                nextEl: '#chicago .swiper-button-next',
+                prevEl: '#chicago .swiper-button-prev',
+            },
+            pagination: {
+                el: '#chicago .swiper-pagination',
+                clickable: true,
+            },
+            loop: true,
+        });
+
+        var manilaSwiper = new Swiper('#manila .swiper-container', {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            navigation: {
+                nextEl: '#manila .swiper-button-next',
+                prevEl: '#manila .swiper-button-prev',
+            },
+            pagination: {
+                el: '#manila .swiper-pagination',
+                clickable: true,
+            },
+            loop: true,
+        });
+
+        var travisSwiper = new Swiper('#travis .swiper-container', {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            navigation: {
+                nextEl: '#travis .swiper-button-next',
+                prevEl: '#travis .swiper-button-prev',
+            },
+            pagination: {
+                el: '#travis .swiper-pagination',
+                clickable: true,
+            },
+            loop: true,
+        });
+
+        // Loading screen script
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function() {
+                document.querySelector('.loading-screen').style.display = 'none';
+                document.querySelector('.main-content').style.display = 'block';
+            }, 3000); // 3 seconds
+        });
+    </script>
+</body>
+</html>

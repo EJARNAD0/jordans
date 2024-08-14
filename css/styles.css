@@ -1,0 +1,271 @@
+/* Global Styles */
+:root {
+    --font-family: 'Arial', sans-serif;
+    --color-white: #ffffff;
+    --transition-speed: 0.8s;
+    --spacing: 20px;
+
+    /* Color Themes */
+    --chicago-bg-color: #d42a2a;
+    --manila-bg-color: #158a00;
+    --travis-bg-color: #6a4c41; /* Travis Scott theme color */
+    --travis-accent-color: #c6a476; /* Accent color for Travis Scott theme */
+
+    /* Responsive Typography */
+    --font-size-large: calc(1.5rem + 2vw);
+    --font-size-medium: calc(1rem + 0.5vw);
+    --font-size-small: calc(0.875rem + 0.25vw);
+}
+
+/* Body and HTML */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    background-color: var(--color-white);
+    color: var(--color-white);
+}
+
+/* Header */
+.header {
+    background-color: #333; /* Dark background for the header */
+    color: var(--color-white);
+    padding: var(--spacing) 0;
+    text-align: center;
+    position: relative;
+    animation: fadeIn 1s ease-out;
+}
+
+.logo-container {
+    margin-bottom: var(--spacing);
+}
+
+.logo {
+    max-width: 150px;
+    height: auto;
+    animation: bounceIn 1s ease-out;
+}
+
+.intro {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.intro h1 {
+    font-size: var(--font-size-large);
+    margin: var(--spacing) 0;
+    animation: fadeInUp 1s ease-out;
+}
+
+.intro p {
+    font-size: var(--font-size-medium);
+    margin: 0;
+    animation: fadeInUp 1.5s ease-out;
+}
+
+/* Shoe Section */
+.shoe-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    transition: background-color var(--transition-speed) ease-in-out;
+    padding: var(--spacing);
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.shoe-section h1 {
+    font-size: var(--font-size-large);
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: transform var(--transition-speed) ease-in-out;
+    transform: translateY(20px);
+}
+
+.shoe-section .description {
+    font-size: var(--font-size-medium);
+    margin: var(--spacing) 0;
+    max-width: 80%;
+    line-height: 1.6;
+    opacity: 0.9;
+    transition: opacity var(--transition-speed) ease-in-out, transform var(--transition-speed) ease-in-out;
+    transform: translateY(20px);
+}
+
+.shoe-section img {
+    max-width: 40%;
+    margin-top: 3%;
+    height: auto;
+    transition: transform var(--transition-speed) ease-in-out, opacity var(--transition-speed) ease-in-out;
+    transform: scale(1);
+    opacity: 0.7;
+}
+
+.shoe-section:hover img {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+#chicago {
+    background-color: var(--chicago-bg-color);
+}
+
+#manila {
+    background-color: var(--manila-bg-color);
+}
+
+#travis {
+    background-color: var(--travis-bg-color);
+}
+
+.shoe-section.in-view h1,
+.shoe-section.in-view .description,
+.shoe-section.in-view img {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceIn {
+    0% { opacity: 0; transform: scale(0.3); }
+    50% { opacity: 1; transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .shoe-section h1 {
+        font-size: var(--font-size-medium);
+    }
+
+    .shoe-section .description {
+        font-size: var(--font-size-small);
+    }
+
+    .shoe-section img {
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .shoe-section img {
+        max-width: 60%;
+    }
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+}
+
+/* Swiper Container */
+.swiper-container {
+    width: 80%;
+    max-width: 800px;
+    height: auto;
+    margin: var(--spacing) auto;
+}
+
+/* Swiper Slide */
+.swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 280px; /* Fixed height for consistency */
+    border-radius: 10px;
+    object-fit: cover; /* Ensures images cover the area without distortion */
+    transition: transform var(--transition-speed) ease-in-out;
+}
+
+/* Swiper Navigation */
+.swiper-button-next,
+.swiper-button-prev {
+    color: var(--color-white);
+    transition: color var(--transition-speed) ease-in-out;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    color: #C8102E;
+}
+
+.swiper-pagination-bullet {
+    background: var(--color-white);
+}
+
+.swiper-pagination-bullet-active {
+    background: #C8102E;
+}
+
+/* Swiper Slide Animation */
+.swiper-slide {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+.swiper-slide-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Loading Screen Styles */
+/* Glassmorphism Background for Loading Screen */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(219, 81, 81, 0.2); /* Semi-transparent white background */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity var(--transition-speed) ease-in-out;
+}
+
+/* Loading Logo */
+.loading-logo {
+    max-width: 150px;
+    height: auto;
+    animation: spin 1s linear infinite;
+}
+
+/* Main Content (Initially Hidden) */
+.main-content {
+    display: none;
+}
+
+/* Keyframes for loading screen */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
