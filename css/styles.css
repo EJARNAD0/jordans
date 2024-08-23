@@ -18,7 +18,7 @@
 }
 
 /* Body and HTML */
-body, html {
+body {
     margin: 0;
     padding: 0;
     font-family: var(--font-family);
@@ -26,58 +26,163 @@ body, html {
     overflow-x: hidden;
     background-color: var(--color-white);
     color: var(--color-white);
+    scroll-snap-type: y mandatory; /* Snap scroll sections vertically */
 }
 
 /* Header */
 .header {
-    background-color: #333; /* Dark background for the header */
+    background: linear-gradient(135deg, #333, #000);
     color: var(--color-white);
     padding: var(--spacing) 0;
     text-align: center;
     position: relative;
     animation: fadeIn 1s ease-out;
-}
-
-.logo-container {
-    margin-bottom: var(--spacing);
+    scroll-snap-align: start;
+    height: 100vh;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .logo {
     max-width: 150px;
     height: auto;
     animation: bounceIn 1s ease-out;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
 }
 
-.intro {
-    max-width: 80%;
-    margin: 0 auto;
+/* Animation Keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-.intro h1 {
-    font-size: var(--font-size-large);
-    margin: var(--spacing) 0;
-    animation: fadeInUp 1s ease-out;
+@keyframes bounceIn {
+    0% { opacity: 0; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
 }
 
-.intro p {
-    font-size: var(--font-size-medium);
-    margin: 0;
-    animation: fadeInUp 1.5s ease-out;
+@keyframes rotateAnimation {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(10deg) scale(1.1); }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Dunk Animation */
+.dunk-animation {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.dunk-player {
+    width: auto;
+    height: 200px;
+    animation: rotateAnimation 4s ease-in-out infinite;
+}
+
+.dunk-animation iframe {
+    border: none; /* Remove default border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for better visibility */
+    transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
+}
+
+.dunk-animation iframe:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Enhance shadow on hover */
 }
 
 /* Shoe Section */
 .shoe-section {
-    height: 100vh;
+    position: relative;
+    height: 65vh; /* Adjusted height */
+    padding-top: calc(var(--spacing) * 2); /* Additional padding to give space for the content */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
-    position: relative;
-    transition: background-color var(--transition-speed) ease-in-out;
     padding: var(--spacing);
     opacity: 0;
-    animation: fadeInUp 1s ease-out forwards;
+    scroll-snap-align: start;
+    transition: background-color var(--transition-speed) ease-in-out;
+    overflow: hidden; /* Ensure gradient doesn't overflow */
+    animation: slideUp 1s ease-out; /* Scroll effect animation */
+}
+
+.shoe-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.5), /* Dark overlay for better text visibility */
+        rgba(0, 0, 0, 0.5)
+    );
+    z-index: 0;
+    transition: opacity var(--transition-speed) ease-in-out;
+}
+
+.shoe-section h1,
+.shoe-section .description,
+.shoe-section img {
+    position: relative;
+    z-index: 1; /* Ensure content is above gradient */
+}
+
+#chicago::before {
+    background: linear-gradient(
+        to bottom,
+        rgba(212, 42, 42, 0.5),
+        rgba(212, 42, 42, 0.8)
+    );
+}
+
+#manila::before {
+    background: linear-gradient(
+        to bottom,
+        rgba(21, 138, 0, 0.5),
+        rgba(21, 138, 0, 0.8)
+    );
+}
+
+#travis::before {
+    background: linear-gradient(
+        to bottom,
+        rgba(106, 76, 65, 0.5),
+        rgba(106, 76, 65, 0.8)
+    );
+}
+
+.shoe-section img {
+    max-width: 50%; /* Adjusted max-width */
+    margin-top: var(--spacing); /* Increased margin to give more space */
+    height: auto;
+    transition: transform var(--transition-speed) ease-in-out, opacity var(--transition-speed) ease-in-out;
+    transform: scale(1);
+    opacity: 0.9;
+}
+
+.shoe-section.in-view {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity var(--transition-speed) ease-in-out, transform var(--transition-speed) ease-in-out;
 }
 
 .shoe-section h1 {
@@ -85,8 +190,6 @@ body, html {
     margin: 0;
     letter-spacing: 2px;
     text-transform: uppercase;
-    transition: transform var(--transition-speed) ease-in-out;
-    transform: translateY(20px);
 }
 
 .shoe-section .description {
@@ -95,17 +198,6 @@ body, html {
     max-width: 80%;
     line-height: 1.6;
     opacity: 0.9;
-    transition: opacity var(--transition-speed) ease-in-out, transform var(--transition-speed) ease-in-out;
-    transform: translateY(20px);
-}
-
-.shoe-section img {
-    max-width: 40%;
-    margin-top: 3%;
-    height: auto;
-    transition: transform var(--transition-speed) ease-in-out, opacity var(--transition-speed) ease-in-out;
-    transform: scale(1);
-    opacity: 0.7;
 }
 
 .shoe-section:hover img {
@@ -113,40 +205,10 @@ body, html {
     opacity: 1;
 }
 
-#chicago {
-    background-color: var(--chicago-bg-color);
-}
-
-#manila {
-    background-color: var(--manila-bg-color);
-}
-
-#travis {
-    background-color: var(--travis-bg-color);
-}
-
 .shoe-section.in-view h1,
 .shoe-section.in-view .description,
 .shoe-section.in-view img {
-    transform: translateY(0);
     opacity: 1;
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes bounceIn {
-    0% { opacity: 0; transform: scale(0.3); }
-    50% { opacity: 1; transform: scale(1.1); }
-    100% { transform: scale(1); }
 }
 
 /* Responsive Design */
@@ -233,39 +295,34 @@ footer {
     transform: translateY(0);
 }
 
-/* Loading Screen Styles */
-/* Glassmorphism Background for Loading Screen */
+/* Loading Screen */
 .loading-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(219, 81, 81, 0.2); /* Semi-transparent white background */
-    backdrop-filter: blur(10px); /* Apply blur effect */
+    background: linear-gradient(
+        rgba(212, 42, 42, 0.6), /* Chicago Color */
+        rgba(21, 138, 0, 0.6),  /* Manila Color */
+        rgba(106, 76, 65, 0.6)   /* Travis Scott Color */
+    ); /* Gradient with transparency */
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 9999;
-    transition: opacity var(--transition-speed) ease-in-out;
+    backdrop-filter: blur(10px); /* Glass effect */
+    animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Loading Logo */
-.loading-logo {
-    max-width: 150px;
+
+.loading-screen img {
+    width: 150px;
     height: auto;
     animation: spin 1s linear infinite;
 }
 
-/* Main Content (Initially Hidden) */
-.main-content {
-    display: none;
-}
-
-/* Keyframes for loading screen */
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
-
-
