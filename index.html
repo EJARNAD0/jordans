@@ -8,12 +8,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
 </head>
 <body>
-
     <!-- Loading Screen -->
     <div class="loading-screen">
         <img src="images/logo.png" alt="Jordan Logo" class="loading-logo">
     </div>
-
+    
     <!-- Main Content -->
     <div class="main-content" style="display: none;">
         <!-- Logo and Introduction Section -->
@@ -25,8 +24,13 @@
                 <h1>Exclusive Jordan Shoe Collection</h1>
                 <p>Discover the latest and most iconic Jordan sneakers that blend heritage and innovation. Explore our featured collection and find your perfect pair.</p>
             </div>
+            <!-- Basketball Dunk Animation -->
+            <div class="dunk-animation">
+                <img src="images/dunk.png" alt="Basketball Player Dunking" class="dunk-player">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/RdSZTcI6mzI?si=clIKUHWQO-T1EeKQ&amp;start=3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
         </header>
-
+        <!-- Shoe Sections -->
         <div class="shoe-section" id="chicago">
             <h1>Jordan 1 Chicago</h1>
             <p class="description">
@@ -116,6 +120,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="js/script.js"></script>
     <script>
+        // Initialize Swipers
         var chicagoSwiper = new Swiper('#chicago .swiper-container', {
             slidesPerView: 1,
             spaceBetween: 10,
